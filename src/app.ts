@@ -5,6 +5,7 @@ import routes from './routes'
 
 class App {
   public express: express.Application;
+
   public constructor () {
     this.express = express()
     this.middlewares()
@@ -17,14 +18,14 @@ class App {
     this.express.use(cors())
   }
 
-  private database ():void{
+  private database (): void {
     mongoose.connect('mongodb://localhost:27017/bossabox_backend', {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
   }
 
-  private routes ():void{
+  private routes (): void {
     this.express.use(routes)
   }
 }

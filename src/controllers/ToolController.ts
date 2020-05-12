@@ -7,10 +7,10 @@ class ToolsController {
     const { q, tags } = req.query
     let tools
     if (q) {
-      tools = await Tools.find({ title: q })
+      tools = await Tools.find({ title: { $regex: q, $options: 'i' } })
     } else {
       if (tags) {
-        tools = await Tools.find({ tags: { $all: tags } })
+        tools = await Tools.find({ tags: { $regex: tags, $options: 'i' } })
       } else {
         tools = await Tools.find()
       }
